@@ -1,48 +1,56 @@
 package com.example.movieapp.model
 
+
 import com.google.gson.annotations.SerializedName
 
 data class Trending(
     @SerializedName("page")
-    private val mPage: Long? = null,
+    val page: Int,
     @SerializedName("results")
-    public val mTrendDetails: List<TrendDetail>? = null,
+    val trendDetails: List<TrendDetail>,
     @SerializedName("total_pages")
-    private val mTotalPages: Long? = null,
+    val totalPages: Int,
     @SerializedName("total_results")
-    private val mTotalResults: Long? = null
+    val totalResults: Int
 )
-
-
 
 data class TrendDetail(
     @SerializedName("adult")
-    private val mAdult: Boolean? = null,
+    val adult: Boolean,
     @SerializedName("backdrop_path")
-    private val mBackdropPath: String? = null,
+    val backdropPath: String,
+    @SerializedName("first_air_date")
+    val firstAirDate: String,
     @SerializedName("genre_ids")
-    private val mGenreIds: List<Long>? = null,
+    val genreIds: List<Int>,
     @SerializedName("id")
-    private val mId: Long? = null,
+    val id: Int,
+    @SerializedName("media_type")
+    val mediaType: String,
+    @SerializedName("name")
+    val name: String,
+    @SerializedName("origin_country")
+    val originCountry: List<String>,
     @SerializedName("original_language")
-    private val mOriginalLanguage: String? = null,
+    val originalLanguage: String,
+    @SerializedName("original_name")
+    val originalName: String,
     @SerializedName("original_title")
-    private val mOriginalTitle: String? = null,
+    val originalTitle: String,
     @SerializedName("overview")
-    private val mOverview: String? = null,
+    val overview: String,
     @SerializedName("popularity")
-    private val mPopularity: Double? = null,
+    val popularity: Double,
     @SerializedName("poster_path")
-    private val mPosterPath: String? = null,
+    val posterPath: String,
     @SerializedName("release_date")
-    private val mReleaseDate: String? = null,
+    val releaseDate: String,
     @SerializedName("title")
-    private val mTitle: String? = null,
+    val title: String,
     @SerializedName("video")
-    private val mVideo: Boolean? = null,
+    val video: Boolean,
     @SerializedName("vote_average")
-    private val mVoteAverage: Double? = null,
+    val voteAverage: Double,
     @SerializedName("vote_count")
-    private val mVoteCount: Long? = null
+    val voteCount: Int
 )
-

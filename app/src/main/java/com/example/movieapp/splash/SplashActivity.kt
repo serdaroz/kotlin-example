@@ -18,9 +18,7 @@ class SplashActivity : BaseActivity(), SplashContract.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         setPresenter(SplashPresenter(this))
-        GlobalScope.launch {
-            presenter.onViewCreated()
-        }
+        presenter.onViewCreated()
 
     }
 
@@ -37,9 +35,7 @@ class SplashActivity : BaseActivity(), SplashContract.View {
 
 
     override fun onDestroy() {
-        GlobalScope.launch {
-            presenter.onDestroy()
-        }
+        presenter.onDestroy()
         super.onDestroy()
     }
 }

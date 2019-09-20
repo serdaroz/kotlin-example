@@ -11,12 +11,8 @@ import com.example.movieapp.di.DependencyInjectorImpl
 import com.example.movieapp.model.TrendDetail
 import com.example.movieapp.model.Trending
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import org.koin.android.ext.android.get
 
-class MainActivity : BaseActivity(), MainContract.View,
-    TrendListAdapter.TrendListItemClickListener {
+class MainActivity : BaseActivity(), MainContract.View {
 
     internal lateinit var presenter: MainContract.Presenter
 
@@ -24,19 +20,20 @@ class MainActivity : BaseActivity(), MainContract.View,
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setPresenter(MainPresenter(this, DependencyInjectorImpl()))
-        GlobalScope.launch {
-            presenter.onViewCreated()
-        }
+        presenter.onViewCreated()
         trendListRecycler.layoutManager = GridLayoutManager(this, 2)
     }
 
     override suspend fun displayTrendList(trending: Trending?) {
-        trendListRecycler.adapter = TrendListAdapter(trending!!.mTrendDetails, this.get())
+        trendListRecycler.adapter = TrendListAdapter(
+            trending!!.trendDetails,
+            trendListItemClickListener = object : TrendListAdapter.TrendListItemClickListener {
+                override fun onItemClicked(item: TrendDetail) {
+                    Toast.makeText(this@MainActivity, "Clicked", Toast.LENGTH_LONG).show()
+                }
+            })
     }
 
-    override fun onItemClicked(item: TrendDetail) {
-        Toast.makeText(this, "Clicked", Toast.LENGTH_LONG).show()
-    }
 
     override fun onMovieClicked() {
 //
@@ -48,9 +45,7 @@ class MainActivity : BaseActivity(), MainContract.View,
 
 
     override fun onDestroy() {
-        GlobalScope.launch {
-            presenter.onDestroy()
-        }
+        presenter.onDestroy()
         super.onDestroy()
     }
 
