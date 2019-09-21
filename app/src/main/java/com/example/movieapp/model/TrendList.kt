@@ -5,52 +5,53 @@ import com.google.gson.annotations.SerializedName
 
 data class Trending(
     @SerializedName("page")
-    val page: Int,
+    var page: Int? = null,
     @SerializedName("results")
-    val trendDetails: List<TrendDetail>,
+    var results: List<TrendDetail>? = null,
     @SerializedName("total_pages")
-    val totalPages: Int,
+    var totalPages: Int? = null,
     @SerializedName("total_results")
-    val totalResults: Int
+    var totalResults: Int? = null
 )
 
 data class TrendDetail(
     @SerializedName("adult")
-    val adult: Boolean,
+    var adult: Boolean? = null,
     @SerializedName("backdrop_path")
-    val backdropPath: String,
+    var backdropPath: String? = null,
     @SerializedName("first_air_date")
-    val firstAirDate: String,
+    var firstAirDate: String? = null,
     @SerializedName("genre_ids")
-    val genreIds: List<Int>,
+    var genreIds: List<Int?>? = null,
     @SerializedName("id")
-    val id: Int,
+    var id: Int? = null,
     @SerializedName("media_type")
-    val mediaType: String,
+    var mediaType: String? = null,
     @SerializedName("name")
-    val name: String,
+    var name: String? = null,
     @SerializedName("origin_country")
-    val originCountry: List<String>,
+    var originCountry: List<String?>? = null,
     @SerializedName("original_language")
-    val originalLanguage: String,
+    var originalLanguage: String? = null,
     @SerializedName("original_name")
-    val originalName: String,
+    var originalName: String? = null,
     @SerializedName("original_title")
-    val originalTitle: String,
+    var originalTitle: String? = null,
     @SerializedName("overview")
-    val overview: String,
+    var overview: String? = null,
     @SerializedName("popularity")
-    val popularity: Double,
+    var popularity: Double? = null,
     @SerializedName("poster_path")
-    val posterPath: String,
+    var posterPath: String? = null,
     @SerializedName("release_date")
-    val releaseDate: String,
+    var releaseDate: String? = null,
     @SerializedName("title")
-    val title: String,
+    var title: String? = null,
     @SerializedName("video")
-    val video: Boolean,
+    var video: Boolean? = null,
     @SerializedName("vote_average")
-    val voteAverage: Double,
+    var voteAverage: Double? = null,
     @SerializedName("vote_count")
-    val voteCount: Int
+    var voteCount: Int? = null
 )
+
