@@ -6,6 +6,9 @@ import com.example.movieapp.main.MainPresenter
 import com.example.movieapp.main.TrendListRepository
 import com.example.movieapp.model.TrendDetail
 import com.example.movieapp.model.Trending
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import org.junit.After
 import org.junit.Test
 
@@ -34,24 +37,20 @@ class MainPresenterTest {
 
     @Before
     fun setUp() {
-        ​    MockitoAnnotations.initMocks(this)
-        ​    presenter = MainPresenter(mockMainActivity, dependencyInjector)
+        MockitoAnnotations.initMocks(this)
+        presenter = MainPresenter(mockMainActivity, dependencyInjector)
     }
 
     @After
     fun tearDown() {
-        ​    presenter?.onDestroy()
+        presenter?.onDestroy()
     }
 
+
     @Test
-    suspend fun testOnViewCreatedFlow() {
-        ​    presenter?.onViewCreated()
-        ​    verify(mockMainActivity).displayTrendList(
-            dependencyInjector.trendListRepository().loadTrendList(
-                1
-            )
-        )
-    }
+    fun testOnViewCreatedFlow() {
+        ​presenter?.onViewCreated()
+        ​GlobalScope.launch(Dispatchers.Main) { verify(mockMainActivity).displayTrendList(dependencyInjector.trendListRepository().loadTrendList(1)) } }
 }
 
 class StubDependencyInjector : DependencyInjector {

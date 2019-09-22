@@ -48,5 +48,9 @@ class MainPresenter(
         this.view = null
     }
 
+    override fun settingsMenu() {
+
+    }
+
 
 }

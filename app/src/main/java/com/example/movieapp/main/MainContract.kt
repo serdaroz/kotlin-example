@@ -10,11 +10,13 @@ interface MainContract {
 
         suspend fun loadTrendList(page: Long)
 
+        fun settingsMenu()
+
     }
 
     interface View : BaseView<Presenter> {
 
-        fun onMovieClicked()
+        fun onSettingClicked()
 
         suspend fun displayTrendList(trending: Trending?)
 

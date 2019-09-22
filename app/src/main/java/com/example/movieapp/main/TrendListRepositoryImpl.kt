@@ -16,10 +16,5 @@ class TrendListRepositoryImpl : TrendListRepository {
         ).await()
 
         return trendList.body()
-
     }
-
-
-
-
 }

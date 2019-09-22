@@ -17,6 +17,7 @@ class App : Application() {
                 androidLogger()
             androidContext(this@App)
             modules(Inject.modules)
+
         }
     }
 

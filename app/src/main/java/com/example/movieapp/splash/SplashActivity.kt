@@ -3,12 +3,7 @@ package com.example.movieapp.splash
 import android.os.Bundle
 import com.example.movieapp.R
 import com.example.movieapp.base.ui.BaseActivity
-import com.example.movieapp.di.DependencyInjectorImpl
 import com.example.movieapp.main.MainActivity
-import com.example.movieapp.main.MainPresenter
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlin.coroutines.CoroutineContext
 
 class SplashActivity : BaseActivity(), SplashContract.View {
 
@@ -24,7 +19,7 @@ class SplashActivity : BaseActivity(), SplashContract.View {
 
     override fun startActivity() {
         openActivity(
-            MainActivity.newIntent(this),
+            MainActivity.onNewIntent(this),
             R.anim.slide_in_left, R.anim.slide_out_left
         )
     }

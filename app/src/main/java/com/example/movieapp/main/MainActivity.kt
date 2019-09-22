@@ -3,14 +3,17 @@ package com.example.movieapp.main
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
+import android.view.View
+import androidx.core.app.ActivityOptionsCompat
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.movieapp.R
+import com.example.movieapp.R.layout
+import com.example.movieapp.R.string
 import com.example.movieapp.base.ui.BaseActivity
+import com.example.movieapp.detail.DetailActivity
 import com.example.movieapp.di.DependencyInjectorImpl
-import com.example.movieapp.model.TrendDetail
 import com.example.movieapp.model.Trending
 import kotlinx.android.synthetic.main.activity_main.*
+
 
 class MainActivity : BaseActivity(), MainContract.View {
 
@@ -18,25 +21,36 @@ class MainActivity : BaseActivity(), MainContract.View {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(layout.activity_main)
         setPresenter(MainPresenter(this, DependencyInjectorImpl()))
         presenter.onViewCreated()
         trendListRecycler.layoutManager = GridLayoutManager(this, 2)
+        floatingSettingButton.setOnClickListener {
+            onSettingClicked()
+        }
+    }
+
+    override fun onSettingClicked() {
+        presenter.settingsMenu()
     }
 
     override suspend fun displayTrendList(trending: Trending?) {
-        trendListRecycler.adapter = TrendListAdapter(
-            trending!!.trendDetails,
-            trendListItemClickListener = object : TrendListAdapter.TrendListItemClickListener {
-                override fun onItemClicked(item: TrendDetail) {
-                    Toast.makeText(this@MainActivity, "Clicked", Toast.LENGTH_LONG).show()
-                }
-            })
-    }
-
-
-    override fun onMovieClicked() {
-//
+        trendListRecycler.adapter = trending!!.trendDetails?.let {
+            TrendListAdapter(
+                it,
+                trendListItemClickListener = object : TrendListAdapter.TrendListItemClickListener {
+                    override fun onItemClicked(imdbId: Int?, view: View) {
+                        val transitionName = resources.getString(string.movie_poster)
+                        val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                            this@MainActivity, view, transitionName
+                        )
+                        startActivity(
+                            DetailActivity.onNewIntent(this@MainActivity, imdbId),
+                            options.toBundle()
+                        )
+                    }
+                })
+        }
     }
 
     override fun setPresenter(presenter: MainContract.Presenter) {
@@ -50,7 +64,7 @@ class MainActivity : BaseActivity(), MainContract.View {
     }
 
     companion object {
-        fun newIntent(context: Context): Intent {
+        fun onNewIntent(context: Context): Intent {
             return Intent(context, MainActivity::class.java)
         }
     }

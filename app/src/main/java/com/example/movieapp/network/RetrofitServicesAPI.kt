@@ -23,6 +23,7 @@ interface RetrofitServicesAPI {
         @Query("page") page: Long
     ): Deferred<Response<Trending>>
 
+
     //@GET("3/movie/{movie_id}")
     //fun getMovieDetail(@Path("movie_id")  movieId : Long) : Deferred<MovieDetail>
 
@@ -30,13 +31,13 @@ interface RetrofitServicesAPI {
         operator fun invoke(): RetrofitServicesAPI {
 
             val requestInterceptor = Interceptor {
-
                 val url = it
                     .request()
                     .url()
                     .newBuilder()
                     .addQueryParameter("api_key", API_KEY)
                     .build()
+
                 val request = it
                     .request()
                     .newBuilder()

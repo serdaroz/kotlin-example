@@ -7,7 +7,7 @@ data class Trending(
     @SerializedName("page")
     var page: Int? = null,
     @SerializedName("results")
-    var results: List<TrendDetail>? = null,
+    var trendDetails: List<TrendDetail>? = null,
     @SerializedName("total_pages")
     var totalPages: Int? = null,
     @SerializedName("total_results")

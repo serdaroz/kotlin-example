@@ -21,8 +21,6 @@
         <item name="android:textColor">@color/white</item>
         <item name="android:background">@color/filter_desc_card</item>
 
-
-
     </style>
 
 </resources>
