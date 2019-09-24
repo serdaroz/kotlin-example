@@ -9,7 +9,7 @@ import coil.request.Request
 import com.example.movieapp.R
 import com.example.movieapp.base.GenericAdapter
 import com.example.movieapp.model.TrendDetail
-import com.example.movieapp.util.Constants.Companion.PHOTO_URL
+import com.example.movieapp.util.Constants.PHOTO_URL
 import kotlinx.android.synthetic.main.trend_list_item.view.*
 
 class TrendListAdapter(

@@ -3,6 +3,7 @@ package com.example.movieapp.main
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.core.app.ActivityOptionsCompat
 import androidx.recyclerview.widget.GridLayoutManager
@@ -35,14 +36,18 @@ class MainActivity : BaseActivity(), MainContract.View {
     }
 
     override suspend fun displayTrendList(trending: Trending?) {
-        trendListRecycler.adapter = trending!!.trendDetails?.let {
+        trendListRecycler.visibility = View.VISIBLE
+        lottieLoadingAnimation.visibility = View.GONE
+        trendListRecycler.adapter =
             TrendListAdapter(
-                it,
+                trending!!.trendDetails!!,
                 trendListItemClickListener = object : TrendListAdapter.TrendListItemClickListener {
                     override fun onItemClicked(imdbId: Int?, view: View) {
                         val transitionName = resources.getString(string.movie_poster)
                         val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
-                            this@MainActivity, view, transitionName
+                            this@MainActivity,
+                            view,
+                            transitionName
                         )
                         startActivity(
                             DetailActivity.onNewIntent(this@MainActivity, imdbId),
@@ -50,7 +55,6 @@ class MainActivity : BaseActivity(), MainContract.View {
                         )
                     }
                 })
-        }
     }
 
     override fun setPresenter(presenter: MainContract.Presenter) {

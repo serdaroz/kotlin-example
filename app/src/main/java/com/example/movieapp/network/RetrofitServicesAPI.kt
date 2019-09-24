@@ -1,8 +1,9 @@
 package com.example.movieapp.network
 
+import com.example.movieapp.model.MovieDetail
 import com.example.movieapp.model.Trending
-import com.example.movieapp.util.Constants.Companion.API_KEY
-import com.example.movieapp.util.Constants.Companion.BASE_URL
+import com.example.movieapp.util.Constants.API_KEY
+import com.example.movieapp.util.Constants.BASE_URL
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import kotlinx.coroutines.Deferred
 import okhttp3.Interceptor
@@ -13,6 +14,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
+import java.util.concurrent.TimeUnit
 
 interface RetrofitServicesAPI {
 
@@ -24,8 +26,8 @@ interface RetrofitServicesAPI {
     ): Deferred<Response<Trending>>
 
 
-    //@GET("3/movie/{movie_id}")
-    //fun getMovieDetail(@Path("movie_id")  movieId : Long) : Deferred<MovieDetail>
+    @GET("3/movie/{movie_id}")
+    fun getMovieDetailAsync(@Path("movie_id") movieId: Int): Deferred<MovieDetail>
 
     companion object {
         operator fun invoke(): RetrofitServicesAPI {
@@ -48,6 +50,9 @@ interface RetrofitServicesAPI {
             }
 
             val okHttpClient = OkHttpClient.Builder()
+                .connectTimeout(30, TimeUnit.HOURS)
+                .writeTimeout(30, TimeUnit.HOURS)
+                .readTimeout(30, TimeUnit.HOURS)
                 .addInterceptor(requestInterceptor)
                 .build()
 

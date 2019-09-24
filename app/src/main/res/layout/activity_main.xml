@@ -7,10 +7,20 @@
     android:background="@drawable/background"
     tools:context=".main.MainActivity">
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieLoadingAnimation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:lottie_autoPlay="true"
+        app:lottie_speed="1.5"
+        app:lottie_fileName="loading_animation.json" />
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/trendListRecycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

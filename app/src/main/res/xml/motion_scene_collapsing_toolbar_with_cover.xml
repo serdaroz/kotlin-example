@@ -22,11 +22,6 @@
 
             <KeyAttribute
                 android:alpha="0"
-                motion:framePosition="80"
-                motion:target="@id/toolbarIconContainer" />
-
-            <KeyAttribute
-                android:alpha="0"
                 motion:framePosition="70"
                 motion:target="@id/backButton" />
 

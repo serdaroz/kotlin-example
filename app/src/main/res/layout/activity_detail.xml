@@ -2,9 +2,9 @@
 <androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/motionLayout"
-    app:layoutDescription="@xml/motion_scene_collapsing_toolbar_with_cover"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    app:layoutDescription="@xml/motion_scene_collapsing_toolbar_with_cover">
 
 
     <ImageView
@@ -12,37 +12,13 @@
         android:layout_width="0dp"
         android:layout_height="220dp"
         android:adjustViewBounds="true"
+        android:contentDescription="@string/movie_poster"
         android:fitsSystemWindows="true"
         android:scaleType="centerCrop"
-        android:contentDescription="@string/movie_poster"
         android:transitionName="@string/movie_poster"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-
-    <FrameLayout
-        android:id="@+id/toolbarIconContainer"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:background="#ffffff"
-        app:layout_constraintBottom_toBottomOf="@id/toolbar_cover_image"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar_cover_image">
-
-        <ImageView
-            android:id="@+id/toolbar_image"
-            android:layout_width="73dp"
-            android:layout_height="73dp"
-            android:layout_gravity="center"
-            android:adjustViewBounds="true"
-            android:background="@drawable/ic_launcher_foreground"
-            android:contentDescription="@null"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </FrameLayout>
 
     <ImageView
         android:id="@+id/backButton"
@@ -86,8 +62,8 @@
         android:text="Googleplex"
         android:textColor="@color/black"
         android:textSize="19sp"
-        android:visibility="visible"
         android:textStyle="bold"
+        android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@id/separator"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
