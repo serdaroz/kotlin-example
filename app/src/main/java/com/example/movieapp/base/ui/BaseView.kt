@@ -1,6 +1,6 @@
 package com.example.movieapp.base.ui
 
-interface BaseView<T> {
+interface BaseView<T : BasePresenter<*>> {
 
-     fun setPresenter(presenter: T)
+    val presenter: T
 }

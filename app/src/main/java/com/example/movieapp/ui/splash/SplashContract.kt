@@ -5,7 +5,7 @@ import com.example.movieapp.base.ui.BaseView
 
 interface SplashContract {
 
-    interface Presenter : BasePresenter {
+    interface Presenter : BasePresenter<View> {
 
         fun splashCountDown()
 

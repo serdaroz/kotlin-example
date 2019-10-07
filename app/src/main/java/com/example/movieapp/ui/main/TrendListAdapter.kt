@@ -39,6 +39,7 @@ class TrendListAdapter(
             itemView.tvTitle.text = data.title
             itemView.tvType.text = data.mediaType
             itemView.tvYear.text = data.releaseDate
+            itemView.lottieLoadingAnimation.playAnimation()
             itemView.ivPoster.load(PHOTO_URL + data.posterPath) {
                 crossfade(true)
                 diskCachePolicy(CachePolicy.ENABLED)

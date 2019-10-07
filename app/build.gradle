@@ -47,6 +47,10 @@ dependencies {
     implementation 'com.google.android.material:material:1.1.0-alpha05'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0-beta04'
+
+    //Data Binding
+    kapt 'com.android.databinding:compiler:3.1.4'
+
     //Lottie
     implementation 'com.airbnb.android:lottie:3.0.7'
 
@@ -67,7 +71,6 @@ dependencies {
     implementation "io.coil-kt:coil:0.7.0"
 
     //Koin
-    implementation "org.koin:koin-androidx-scope:$koin_version"
     implementation "org.koin:koin-android:$koin_version"
 
 

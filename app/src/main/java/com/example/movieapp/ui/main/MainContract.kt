@@ -6,17 +6,13 @@ import com.example.movieapp.model.Trending
 
 interface MainContract {
 
-    interface Presenter : BasePresenter {
+    interface Presenter : BasePresenter<View> {
 
         suspend fun loadTrendList(page: Long)
-
-        fun settingsMenu()
 
     }
 
     interface View : BaseView<Presenter> {
-
-        fun onSettingClicked()
 
         suspend fun displayTrendList(trending: Trending?)
 
