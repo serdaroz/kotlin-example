@@ -1,4 +1,4 @@
-package com.example.movieapp.main
+package com.example.movieapp.ui.main
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
@@ -22,7 +22,10 @@ class TrendListAdapter(
     }
 
     override fun getViewHolder(view: View, viewType: Int): RecyclerView.ViewHolder {
-        return ViewHolder(view, trendListItemClickListener)
+        return ViewHolder(
+            view,
+            trendListItemClickListener
+        )
     }
 
     class ViewHolder(

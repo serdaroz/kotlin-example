@@ -1,4 +1,4 @@
-package com.example.movieapp.main
+package com.example.movieapp.ui.main
 
 import com.example.movieapp.model.TrendTypes
 import com.example.movieapp.model.Trending

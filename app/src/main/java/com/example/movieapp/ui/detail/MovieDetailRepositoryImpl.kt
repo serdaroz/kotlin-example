@@ -1,4 +1,4 @@
-package com.example.movieapp.detail
+package com.example.movieapp.ui.detail
 
 import com.example.movieapp.model.MovieDetail
 import com.example.movieapp.network.RetrofitServicesAPI

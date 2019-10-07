@@ -1,7 +1,7 @@
 package com.example.movieapp.di
 
-import com.example.movieapp.detail.MovieDetailRepository
-import com.example.movieapp.main.TrendListRepository
+import com.example.movieapp.ui.detail.MovieDetailRepository
+import com.example.movieapp.ui.main.TrendListRepository
 
 interface DependencyInjector {
 

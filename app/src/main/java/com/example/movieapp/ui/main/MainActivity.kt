@@ -1,4 +1,4 @@
-package com.example.movieapp.main
+package com.example.movieapp.ui.main
 
 import android.content.Context
 import android.content.Intent
@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.movieapp.R.layout
 import com.example.movieapp.R.string
 import com.example.movieapp.base.ui.BaseActivity
-import com.example.movieapp.detail.DetailActivity
+import com.example.movieapp.ui.detail.DetailActivity
 import com.example.movieapp.di.DependencyInjectorImpl
 import com.example.movieapp.model.Trending
 import kotlinx.android.synthetic.main.activity_main.*
@@ -41,7 +41,8 @@ class MainActivity : BaseActivity(), MainContract.View {
         trendListRecycler.adapter =
             TrendListAdapter(
                 trending!!.trendDetails!!,
-                trendListItemClickListener = object : TrendListAdapter.TrendListItemClickListener {
+                trendListItemClickListener = object :
+                    TrendListAdapter.TrendListItemClickListener {
                     override fun onItemClicked(imdbId: Int?, view: View) {
                         val transitionName = resources.getString(string.movie_poster)
                         val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
@@ -50,7 +51,10 @@ class MainActivity : BaseActivity(), MainContract.View {
                             transitionName
                         )
                         startActivity(
-                            DetailActivity.onNewIntent(this@MainActivity, imdbId),
+                            DetailActivity.onNewIntent(
+                                this@MainActivity,
+                                imdbId
+                            ),
                             options.toBundle()
                         )
                     }

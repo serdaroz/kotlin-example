@@ -1,11 +1,12 @@
-package com.example.movieapp.splash
+package com.example.movieapp.ui.splash
 
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 
-class SplashPresenter(view: SplashContract.View) : SplashContract.Presenter {
+class SplashPresenter(view: SplashContract.View) :
+    SplashContract.Presenter {
 
     private var view: SplashContract.View? = view
 

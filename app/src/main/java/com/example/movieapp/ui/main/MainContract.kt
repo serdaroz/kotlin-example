@@ -1,4 +1,4 @@
-package com.example.movieapp.main
+package com.example.movieapp.ui.main
 
 import com.example.movieapp.base.ui.BasePresenter
 import com.example.movieapp.base.ui.BaseView

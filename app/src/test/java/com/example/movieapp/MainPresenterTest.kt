@@ -1,9 +1,9 @@
 package com.example.movieapp
 
 import com.example.movieapp.di.DependencyInjector
-import com.example.movieapp.main.MainContract
-import com.example.movieapp.main.MainPresenter
-import com.example.movieapp.main.TrendListRepository
+import com.example.movieapp.ui.main.MainContract
+import com.example.movieapp.ui.main.MainPresenter
+import com.example.movieapp.ui.main.TrendListRepository
 import com.example.movieapp.model.TrendDetail
 import com.example.movieapp.model.Trending
 import kotlinx.coroutines.Dispatchers

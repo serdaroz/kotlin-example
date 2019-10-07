@@ -13,10 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".main.MainActivity" />
-        <activity android:name=".detail.DetailActivity" />
+        <activity android:name=".ui.main.MainActivity" />
+        <activity android:name=".ui.detail.DetailActivity" />
 
-        <activity android:name=".splash.SplashActivity">
+        <activity android:name=".ui.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

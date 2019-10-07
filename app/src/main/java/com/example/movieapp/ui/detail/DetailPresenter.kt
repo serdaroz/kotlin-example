@@ -1,4 +1,4 @@
-package com.example.movieapp.detail
+package com.example.movieapp.ui.detail
 
 import com.example.movieapp.di.DependencyInjector
 import com.example.movieapp.model.MovieDetail

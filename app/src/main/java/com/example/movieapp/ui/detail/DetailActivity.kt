@@ -1,4 +1,4 @@
-package com.example.movieapp.detail
+package com.example.movieapp.ui.detail
 
 import android.content.Context
 import android.content.Intent
@@ -21,7 +21,13 @@ class DetailActivity : BaseActivity(), DetailContract.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
         imdbId = intent.getIntExtra(IMDB_ID, -1)
-        setPresenter(DetailPresenter(this, DependencyInjectorImpl(), imdbId))
+        setPresenter(
+            DetailPresenter(
+                this,
+                DependencyInjectorImpl(),
+                imdbId
+            )
+        )
         presenter.onViewCreated()
     }
 

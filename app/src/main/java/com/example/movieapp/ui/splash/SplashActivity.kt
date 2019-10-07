@@ -1,9 +1,9 @@
-package com.example.movieapp.splash
+package com.example.movieapp.ui.splash
 
 import android.os.Bundle
 import com.example.movieapp.R
 import com.example.movieapp.base.ui.BaseActivity
-import com.example.movieapp.main.MainActivity
+import com.example.movieapp.ui.main.MainActivity
 
 class SplashActivity : BaseActivity(), SplashContract.View {
 
