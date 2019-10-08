@@ -37,17 +37,12 @@ class DetailPresenter(
     }
 
     override suspend fun requestMovieDetail() {
-        CoroutineScope(IO).launch {
+        uiScope.launch {
             val movieDetail =
                 withContext(bgDispatcher) { movieDetailRepository.loadMovieDetail(imdbId) }
             view.displayMovieDetail(movieDetail)
         }
     }
 
-    private fun displayMovieDetail(movieDetail: MovieDetail?) {
-        CoroutineScope(Main).launch {
-
-        }
-    }
 
 }

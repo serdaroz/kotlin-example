@@ -12,9 +12,13 @@ abstract class BaseCoroutine : CoroutineScope {
     override val coroutineContext: CoroutineContext
         get() = Main
 
-     val uiScope = CoroutineScope(Main)
+    val uiScope = CoroutineScope(Main)
 
-     val bgDispatcher: CoroutineDispatcher = IO
+    val bgScope = CoroutineScope(IO)
+
+    val bgDispatcher: CoroutineDispatcher = IO
+
+    val uiDispatcher: CoroutineDispatcher = Main
 
 
 }
