@@ -1,13 +1,14 @@
 package com.example.movieapp.base.ui
 
-interface BasePresenter {
+interface BasePresenter<T> {
 
-     fun onCreate()
+    var view: T
 
-     fun onViewCreated()
+    fun onCreate()
 
-     fun onResume()
+    fun onViewCreated()
 
-     fun onDestroy()
+    fun onResume()
+
 
 }

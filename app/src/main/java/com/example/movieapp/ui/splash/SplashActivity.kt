@@ -4,17 +4,19 @@ import android.os.Bundle
 import com.example.movieapp.R
 import com.example.movieapp.base.ui.BaseActivity
 import com.example.movieapp.ui.main.MainActivity
+import kotlinx.android.synthetic.main.activity_splash.*
+import org.koin.android.ext.android.inject
 
 class SplashActivity : BaseActivity(), SplashContract.View {
 
-    internal lateinit var presenter: SplashContract.Presenter
+    override val presenter by inject<SplashContract.Presenter>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-        setPresenter(SplashPresenter(this))
+        presenter.view = this
         presenter.onViewCreated()
-
+        splashAnimationLottie.playAnimation()
     }
 
     override fun startActivity() {
@@ -22,15 +24,5 @@ class SplashActivity : BaseActivity(), SplashContract.View {
             MainActivity.onNewIntent(this),
             R.anim.slide_in_left, R.anim.slide_out_left
         )
-    }
-
-    override fun setPresenter(presenter: SplashContract.Presenter) {
-        this.presenter = presenter
-    }
-
-
-    override fun onDestroy() {
-        presenter.onDestroy()
-        super.onDestroy()
     }
 }

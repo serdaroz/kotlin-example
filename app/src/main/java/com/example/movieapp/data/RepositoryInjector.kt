@@ -1,9 +1,9 @@
-package com.example.movieapp.di
+package com.example.movieapp.data
 
 import com.example.movieapp.ui.detail.MovieDetailRepository
 import com.example.movieapp.ui.main.TrendListRepository
 
-interface DependencyInjector {
+interface RepositoryInjector {
 
     fun trendListRepository() : TrendListRepository
 

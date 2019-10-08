@@ -6,7 +6,7 @@ import com.example.movieapp.model.MovieDetail
 
 interface DetailContract {
 
-    interface Presenter : BasePresenter {
+    interface Presenter : BasePresenter<View> {
 
         suspend fun requestMovieDetail()
 
