@@ -1,22 +1,6 @@
 package com.example.movieapp
 
-import com.example.movieapp.di.DependencyInjector
-import com.example.movieapp.ui.main.MainContract
-import com.example.movieapp.ui.main.MainPresenter
-import com.example.movieapp.ui.main.TrendListRepository
-import com.example.movieapp.model.TrendDetail
-import com.example.movieapp.model.Trending
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import org.junit.After
-import org.junit.Test
-
-import org.junit.Before
 import org.junit.runner.RunWith
-import org.mockito.Mock
-import org.mockito.Mockito.verify
-import org.mockito.MockitoAnnotations
 import org.mockito.junit.MockitoJUnitRunner
 
 /**
@@ -28,34 +12,38 @@ import org.mockito.junit.MockitoJUnitRunner
 @RunWith(MockitoJUnitRunner::class)
 class MainPresenterTest {
 
-    @Mock
+   /* @Mock
     private lateinit var mockMainActivity: MainContract.View
 
-    private val dependencyInjector: DependencyInjector = StubDependencyInjector()
+    private val dependencyInjector: RepositoryInjector = StubDependencyInjector()
 
     private var presenter: MainPresenter? = null
 
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        presenter = MainPresenter(mockMainActivity, dependencyInjector)
-    }
-
-    @After
-    fun tearDown() {
-        presenter?.onDestroy()
+        presenter = MainPresenter(dependencyInjector)
     }
 
 
     @Test
     fun testOnViewCreatedFlow() {
         ​presenter?.onViewCreated()
-        ​GlobalScope.launch(Dispatchers.Main) { verify(mockMainActivity).displayTrendList(dependencyInjector.trendListRepository().loadTrendList(1)) } }
+        ​GlobalScope.launch(Dispatchers.Main) {
+            verify(mockMainActivity).displayTrendList(
+                dependencyInjector.trendListRepository().loadTrendList(1)
+            )
+        }
+    }
 }
 
-class StubDependencyInjector : DependencyInjector {
+class StubDependencyInjector : RepositoryInjector {
     override fun trendListRepository(): TrendListRepository {
         return StubTrendRepository()
+    }
+
+    override fun movieDetailRepository(): MovieDetailRepository {
+
     }
 
 }
@@ -80,6 +68,6 @@ class StubTrendRepository : TrendListRepository {
             ),
             10, 10
         )
-    }
+    }*/
 
 }

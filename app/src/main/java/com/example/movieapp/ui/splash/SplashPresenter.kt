@@ -5,31 +5,29 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 
-class SplashPresenter(view: SplashContract.View) :
+class SplashPresenter :
     SplashContract.Presenter {
 
-    private var view: SplashContract.View? = view
+    override lateinit var view: SplashContract.View
+
 
     override fun splashCountDown() {
         GlobalScope.launch {
             delay(3000)
-            view?.startActivity()
+            view.startActivity()
         }
     }
 
-    override  fun onViewCreated() {
+    override fun onViewCreated() {
         splashCountDown()
     }
 
-    override  fun onResume() {
+    override fun onResume() {
         //PASS
     }
 
-    override  fun onDestroy() {
-        this.view = null
-    }
 
-    override  fun onCreate() {
+    override fun onCreate() {
         //PASS
     }
 

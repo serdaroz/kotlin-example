@@ -14,5 +14,4 @@ class RepositoryInjectorImpl : RepositoryInjector {
     override fun trendListRepository(): TrendListRepository {
         return TrendListRepositoryImpl()
     }
-
 }

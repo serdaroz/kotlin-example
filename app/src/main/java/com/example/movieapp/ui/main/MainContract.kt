@@ -14,6 +14,7 @@ interface MainContract {
 
     interface View : BaseView<Presenter> {
 
+
         suspend fun displayTrendList(trending: Trending?)
 
     }

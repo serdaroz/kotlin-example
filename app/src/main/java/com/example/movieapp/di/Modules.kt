@@ -43,4 +43,3 @@ val uiModule = module {
     factory { SplashPresenter() as SplashContract.Presenter }
 }
 
-

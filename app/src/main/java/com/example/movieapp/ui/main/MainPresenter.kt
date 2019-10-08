@@ -1,33 +1,25 @@
 package com.example.movieapp.ui.main
 
-import com.example.movieapp.di.DependencyInjector
-import com.example.movieapp.model.Trending
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.Dispatchers.Main
+import android.content.Context
+import com.example.movieapp.base.BaseCoroutine
+import com.example.movieapp.data.RepositoryInjector
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class MainPresenter(
-    view: MainContract.View,
-    dependencyInjector: DependencyInjector
-) : MainContract.Presenter {
+    dependencyInjector: RepositoryInjector,
+    context: Context
+) : MainContract.Presenter, BaseCoroutine() {
+
+    override lateinit var view: MainContract.View
 
     private val trendListRepository: TrendListRepository = dependencyInjector.trendListRepository()
 
-    private var view: MainContract.View? = view
-
     override suspend fun loadTrendList(page: Long) {
-        CoroutineScope(IO).launch {
-            val trendList = trendListRepository.loadTrendList(page)
-            displayTrendList(trendList)
-        }
-    }
-
-    private suspend fun displayTrendList(trendList: Trending?) {
-        CoroutineScope(Main).launch {
-            view!!.displayTrendList(trendList)
+        uiScope.launch {
+            val trendList = withContext(bgDispatcher) { trendListRepository.loadTrendList(page) }
+            view.displayTrendList(trendList)
         }
     }
 
@@ -41,15 +33,6 @@ class MainPresenter(
     }
 
     override fun onResume() {
-    }
-
-
-    override fun onDestroy() {
-        this.view = null
-    }
-
-    override fun settingsMenu() {
-
     }
 
 

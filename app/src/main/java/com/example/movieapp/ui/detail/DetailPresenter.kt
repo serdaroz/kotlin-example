@@ -1,26 +1,28 @@
 package com.example.movieapp.ui.detail
 
-import com.example.movieapp.di.DependencyInjector
+import com.example.movieapp.base.BaseCoroutine
+import com.example.movieapp.data.RepositoryInjector
 import com.example.movieapp.model.MovieDetail
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class DetailPresenter(
-    view: DetailContract.View,
-    dependencyInjector: DependencyInjector,
+    dependencyInjector: RepositoryInjector,
     private val imdbId: Int
 ) :
-    DetailContract.Presenter {
+    DetailContract.Presenter, BaseCoroutine() {
 
 
     private val movieDetailRepository: MovieDetailRepository =
         dependencyInjector.movieDetailRepository()
 
 
-    private var view: DetailContract.View? = view
+    override lateinit var view: DetailContract.View
+
 
     override fun onCreate() {
     }
@@ -34,21 +36,13 @@ class DetailPresenter(
     override fun onResume() {
     }
 
-    override fun onDestroy() {
-        this.view = null
-    }
-
     override suspend fun requestMovieDetail() {
-        CoroutineScope(IO).launch {
-            val movieDetail = movieDetailRepository.loadMovieDetail(imdbId)
-            displayMovieDetail(movieDetail)
+        uiScope.launch {
+            val movieDetail =
+                withContext(bgDispatcher) { movieDetailRepository.loadMovieDetail(imdbId) }
+            view.displayMovieDetail(movieDetail)
         }
     }
 
-    private fun displayMovieDetail(movieDetail: MovieDetail?) {
-        CoroutineScope(Main).launch {
-            view!!.displayMovieDetail(movieDetail)
-        }
-    }
 
 }
